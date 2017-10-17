@@ -17,6 +17,7 @@ int main()
 
     if(insererElement(liste,"mot") ==0) printf("insertion effectuee \n");
 
+
     if(affichageListe(liste)==0)printf("fin affichage taille liste = %d \n",liste->taille);
     else printf("probleme affichage");
 
@@ -33,9 +34,23 @@ int main()
 
     if(liste == NULL) printf("liste vraiment supprimée");
     else printf("pas vraiment %d",liste->tete->valeur);
+/*
+    liste = creerListe();
+
+    if(insererElement(liste,"coucou") ==0) printf("insertion effectuee \n");
+
+    if(insererElement(liste,"coucou") ==0) printf("insertion effectuée \n");
+    if(insererElement(liste,"baba") ==0) printf("insertion effectuée \n");
+
+    if(insererElement(liste,"tes") ==0) printf("insertion effectuee \n");
+
+    if(insererElement(liste,"mot") ==0) printf("insertion effectuee \n");
+
+    if(affichageListe(liste)==0)printf("fin affichage taille liste = %d \n",liste->taille);
+    else printf("probleme affichage");
 
 
-
+*/
 
     return 0;
 }

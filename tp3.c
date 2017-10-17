@@ -132,8 +132,8 @@ int supprimerListe(T_Liste *list)
     list->taille = 0;
     list->tete = NULL;
     list->queue = NULL;
-    //free(list); ça ne marche pas
-    //list = NULL;
+    free(list); //je ne sais pas si ça marche
+    list = NULL; //ça ne marche pas
 
 
     return 0;
