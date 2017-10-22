@@ -3,6 +3,32 @@
 #include <string.h>
 #include "tp3.h"
 
+void Initialisation (Liste tableau[], int taille)
+{
+    int i = 0;
+    for(i=0;i<taille;i++)
+    {
+        strcpy(tableau[i].nom,"Liste inexistante");
+        (tableau[i]).liste = NULL;
+    }
+}
+
+void AffichageTableau(Liste tableau[],int taille)
+{
+    int i = 0;
+    for(i = 0;i<taille;i++)
+    {
+        printf("%d. %s \n",i,tableau[i].nom);
+    }
+}
+
+void viderBuffer()
+{
+    char c = 0;
+    while(c!= '\n' && c != EOF)
+        c= getchar();
+}
+
 T_Element *creerElement(char *val)
 {
     T_Element *nouveau = malloc(sizeof *nouveau);
@@ -110,7 +136,7 @@ int insererElement(T_Liste *list, char *val)
 
 int affichageListe(T_Liste *list)
 {
-    if(list == NULL) return -1;
+    if(list == NULL || list->queue == NULL)  return -1;
     T_Element *actuel = list->tete;
     do
     {
@@ -149,7 +175,7 @@ int supprimerElement(T_Liste *list, char *val)
 
 int supprimerListe(T_Liste *list)
 {
-    if(list == NULL) return -1;
+    if(list == NULL || (list->taille == 0 && list->queue == 0)) return -1;
     T_Element *actuel = list->tete;
     while (actuel != NULL)
     {
@@ -161,11 +187,11 @@ int supprimerListe(T_Liste *list)
     }
 
 
+
+    free(list); //je ne sais pas si ça marche
     list->taille = 0;
     list->tete = NULL;
     list->queue = NULL;
-    free(list); //je ne sais pas si ça marche
-    list = NULL; //ça ne marche pas
 
 
     return 0;
@@ -175,7 +201,7 @@ T_Liste *fusionnerListes(T_Liste *list1, T_Liste *list2)
 {
     T_Liste *fusion = creerListe();
     if (fusion == NULL) exit(0);
-    if (list1 == NULL && list2 == NULL) return NULL;
+    if (list1 == NULL && list2 == NULL) return ;
     if(list1 == NULL || list1->queue == NULL)
     {
         fusion->queue = list2->queue;

@@ -1,6 +1,6 @@
 #ifndef DEF_TP3
 #define DEF_TP3
-
+#define TAILLE_MAX 10
 typedef struct Element T_Element;
 struct Element{
 char valeur[20];
@@ -12,6 +12,18 @@ struct Liste{
 int taille;
 T_Element *tete,*queue;
 };
+
+typedef struct TableauListe Liste;
+struct TableauListe{
+
+char nom[255];
+T_Liste *liste;
+
+};
+
+void Initialisation (Liste tableau[], int taille);
+void AffichageTableau (Liste tableau[], int taille);
+void viderBuffer();
 
 T_Element *creerElement(char * val);
 T_Liste *creerListe();
