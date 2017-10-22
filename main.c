@@ -5,7 +5,7 @@
 int main()
 {
     printf("Hello world!\n");
-    T_Liste *liste = creerListe();
+    T_Liste *liste = creerListe(), *liste2 = creerListe(), *liste3 = creerListe();
     T_Element *recherche = NULL;
 
     if(insererElement(liste,"coucou") ==0) printf("insertion effectuee \n");
@@ -29,11 +29,28 @@ int main()
     else printf("probleme affichage");
 
 
-    if(supprimerListe(liste)== 0) printf("liste supprimée \n");
-    else ("impossible de supprimer la liste \n");
+    if(insererElement(liste2,"Allo") ==0) printf("insertion effectuee \n");
 
-    if(liste == NULL) printf("liste vraiment supprimée");
-    else printf("pas vraiment %d",liste->tete->valeur);
+    if(insererElement(liste2,"des") ==0) printf("insertion effectuée \n");
+
+    if(insererElement(liste2,"test") ==0) printf("insertion effectuée \n");
+
+    if(insererElement(liste2,"licorne") ==0) printf("insertion effectuée \n");
+
+
+
+    if(insererElement(liste2,"Allo") ==0) printf("insertion effectuee \n");
+
+    if(affichageListe(liste2)==0)printf("fin affichage taille liste = %d \n",liste2->taille);
+    else printf("probleme affichage");
+
+    liste3 = fusionnerListes(liste,liste2);
+
+    if(affichageListe(liste3)==0)printf("fin affichage taille liste = %d \n",liste3->taille);
+    else printf("probleme affichage");
+
+
+
 /*
     liste = creerListe();
 
