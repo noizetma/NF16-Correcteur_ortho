@@ -175,7 +175,7 @@ int supprimerElement(T_Liste *list, char *val)
 
 int supprimerListe(T_Liste *list)
 {
-    if(list == NULL || (list->taille == 0 && list->queue == 0)) return -1;
+    if(list == NULL) return -1;
     T_Element *actuel = list->tete;
     while (actuel != NULL)
     {
@@ -188,7 +188,7 @@ int supprimerListe(T_Liste *list)
 
 
 
-    free(list); //je ne sais pas si ça marche
+    free(list); //je ne sais pas si a marche
     list->taille = 0;
     list->tete = NULL;
     list->queue = NULL;
@@ -201,7 +201,7 @@ T_Liste *fusionnerListes(T_Liste *list1, T_Liste *list2)
 {
     T_Liste *fusion = creerListe();
     if (fusion == NULL) exit(0);
-    if (list1 == NULL && list2 == NULL) return ;
+    if (list1 == NULL && list2 == NULL) return  NULL;
     if(list1 == NULL || list1->queue == NULL)
     {
         fusion->queue = list2->queue;
