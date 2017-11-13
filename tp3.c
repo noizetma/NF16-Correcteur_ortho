@@ -53,8 +53,8 @@ T_Liste *creerListe()
 
 int insererDebutListe(T_Liste *list, char *val)
 {
-    T_Element *nouveau = creerElement(val);
     if(list == NULL) return -1;
+    T_Element *nouveau = creerElement(val);
     if(list->queue == NULL)//liste vide
     {
         list->queue = nouveau;
@@ -74,8 +74,9 @@ int insererDebutListe(T_Liste *list, char *val)
 
 int insererFinListe(T_Liste *list, char *val)
 {
-    T_Element *nouveau = creerElement(val);
     if(list == NULL) return -1;
+    T_Element *nouveau = creerElement(val);
+    
 
     if(list->queue == NULL)//liste vide
     {
@@ -114,7 +115,11 @@ int insererElement(T_Liste *list, char *val)
         while(actuel != NULL && strcmp(nouveau->valeur,actuel->valeur)>=0)
         {
 
-            if(strcmp(nouveau->valeur,actuel->valeur)==0) return -1;
+            if(strcmp(nouveau->valeur,actuel->valeur)==0) 
+            {
+                free(nouveau):
+                return -1;
+            }
             precede = actuel;
             actuel = actuel->suivant;
         }
