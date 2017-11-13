@@ -76,7 +76,11 @@ int main()
             printf("Votre choix ? \n");
             scanf("%d",&choix_liste);
             strcpy(tableau[choix_liste].nom,"Liste inexistante");
-            if(supprimerListe(tableau[choix_liste].liste) == 0) printf("liste supprimee. \n");
+            if(supprimerListe(tableau[choix_liste].liste) == 0) {
+                    printf("liste supprimee. \n");
+                    tableau[choix_liste].liste = NULL;
+            }
+
             else printf("suppression impossible. \n");
         break;
         case 7:
@@ -90,6 +94,8 @@ int main()
             scanf("%d",&choix_fusion);
             if(tableau[choix_fusion].liste != NULL) supprimerListe(tableau[choix_fusion].liste);
             tableau[choix_fusion].liste = fusionnerListes(tableau[choix_liste].liste,tableau[choix_liste2].liste);
+            tableau[choix_liste].liste = NULL;
+            tableau[choix_liste2].liste = NULL;
             printf("Entrer nom de la liste fusion: \n");
             scanf("%s",tableau[choix_fusion].nom);
             strcpy(tableau[choix_liste].nom,"Liste inexistante");
@@ -106,7 +112,7 @@ int main()
         }
         viderBuffer();
     }while (choix != 8);
-
+    printf("Vous quittez l'application \n");
     int i = 0;
     for(i=0;i<TAILLE_MAX;i++)
     {

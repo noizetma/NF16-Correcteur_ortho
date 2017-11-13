@@ -76,7 +76,7 @@ int insererFinListe(T_Liste *list, char *val)
 {
     if(list == NULL) return -1;
     T_Element *nouveau = creerElement(val);
-    
+
 
     if(list->queue == NULL)//liste vide
     {
@@ -110,24 +110,21 @@ int insererElement(T_Liste *list, char *val)
     }
     else
     {
+
         T_Element *nouveau = creerElement(val);
-        T_Element *actuel = list->tete->suivant, *precede = NULL;
+        T_Element *actuel = list->tete->suivant, *precede = list->tete;
         while(actuel != NULL && strcmp(nouveau->valeur,actuel->valeur)>=0)
         {
 
-            if(strcmp(nouveau->valeur,actuel->valeur)==0) 
-            {
-                free(nouveau):
-                return -1;
-            }
+            if(strcmp(nouveau->valeur,actuel->valeur)==0) return -1;
             precede = actuel;
             actuel = actuel->suivant;
         }
 
             nouveau->suivant = actuel;
             nouveau->precedent = precede;
-            precede->suivant = nouveau;
-            actuel ->precedent = nouveau;
+            if (precede != NULL)  precede->suivant = nouveau;
+            if (actuel != NULL) actuel ->precedent = nouveau;
             list->taille += 1;
             return 0;
 
@@ -138,6 +135,7 @@ int insererElement(T_Liste *list, char *val)
 
 
 }
+
 
 int affichageListe(T_Liste *list)
 {
@@ -153,6 +151,7 @@ int affichageListe(T_Liste *list)
 
 T_Element *rechercherElement(T_Liste *list, char *val)
 {
+    if(list == NULL || list->queue == NULL)  return NULL;
     T_Element *actuel = list->tete;
     while (actuel != NULL && strcmp(actuel->valeur,val) != 0)
     {
@@ -163,7 +162,7 @@ T_Element *rechercherElement(T_Liste *list, char *val)
 
 int supprimerElement(T_Liste *list, char *val)
 {
-    if(list == NULL) return -1;
+    if(list == NULL || list->taille== 0) return -1;
     T_Element *elementASup = rechercherElement(list,val);
     if (elementASup == NULL) return -1;
 
@@ -180,7 +179,7 @@ int supprimerElement(T_Liste *list, char *val)
 
 int supprimerListe(T_Liste *list)
 {
-    if(list == NULL) return -1;
+    if(list == NULL || list->taille== 0) return -1;
     T_Element *actuel = list->tete;
     while (actuel != NULL)
     {
@@ -194,9 +193,10 @@ int supprimerListe(T_Liste *list)
 
 
     free(list); //je ne sais pas si a marche
-    list->taille = 0;
+    /*list->taille = 0;
     list->tete = NULL;
-    list->queue = NULL;
+    list->queue = NULL;*/
+
 
 
     return 0;
