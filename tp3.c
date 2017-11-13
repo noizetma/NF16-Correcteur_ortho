@@ -116,7 +116,11 @@ int insererElement(T_Liste *list, char *val)
         while(actuel != NULL && strcmp(nouveau->valeur,actuel->valeur)>=0)
         {
 
-            if(strcmp(nouveau->valeur,actuel->valeur)==0) return -1;
+            if(strcmp(nouveau->valeur,actuel->valeur)==0) 
+            {
+                free(nouveau);
+                return -1;
+            }
             precede = actuel;
             actuel = actuel->suivant;
         }
@@ -179,7 +183,7 @@ int supprimerElement(T_Liste *list, char *val)
 
 int supprimerListe(T_Liste *list)
 {
-    if(list == NULL || list->taille== 0) return -1;
+    if(list == NULL) return -1;
     T_Element *actuel = list->tete;
     while (actuel != NULL)
     {
