@@ -11,6 +11,7 @@ int main()
 
     do
     {
+        //affichage du menu
         printf("1. Creer une liste \n");
         printf("2. Ajouter un element dans une liste \n");
         printf("3. Supprimer un element dans une liste \n");
@@ -20,13 +21,13 @@ int main()
         printf("7. Fusionner deux listes\n");
         printf("8. Quitter \n");
         printf("Entrer votre choix. \n");
-        scanf("%d",&choix);
+        scanf(" %d",&choix);
 
-        switch (choix)
+        switch (choix) // on exécute le code correspondant à la fonction choisie
         {
             char valeur[20];
         case 1: //créer liste
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
 			do{
 				printf("Votre choix ? (si vous selectionnez une liste deja existante, elle sera supprimee)\n ");
@@ -37,9 +38,9 @@ int main()
             if(tableau[choix_liste].liste != NULL) supprimerListe(tableau[choix_liste].liste);
             tableau[choix_liste].liste = creerListe();
         break;
-		
+
         case 2: //insérer liste
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
             do{
 				printf("Votre choix ? \n ");
@@ -51,9 +52,9 @@ int main()
             if(insererElement(tableau[choix_liste].liste,valeur) == 0) printf("insertion effectuee. \n");
             else printf("insertion impossible. \n");
         break;
-		
+
         case 3: //supprimerElement
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
             do{
 				printf("Votre choix ? \n ");
@@ -65,9 +66,9 @@ int main()
             if(supprimerElement(tableau[choix_liste].liste,valeur) == 0) printf("suppression effectuee. \n");
             else printf("suppression impossible. \n");
         break;
-		
+
         case 4: //rechercherElement
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
             do{
 				printf("Votre choix ? \n ");
@@ -79,9 +80,9 @@ int main()
             if(rechercherElement(tableau[choix_liste].liste,valeur) != NULL) printf("element trouve. \n");
             else printf("element non trouve. \n");
         break;
-		
+
         case 5: //affichageListe
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
             do{
 				printf("Votre choix ? \n ");
@@ -90,9 +91,9 @@ int main()
             if(affichageListe(tableau[choix_liste].liste) == 0) printf("affichage termine. \n");
             else printf("affichage impossible. \n");
         break;
-		
+
         case 6://supprimerListe
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
             do{
 				printf("Votre choix ? \n ");
@@ -100,35 +101,39 @@ int main()
 			}while(choix_liste<0 || choix_liste>9);
             strcpy(tableau[choix_liste].nom,"Liste inexistante");
             if(supprimerListe(tableau[choix_liste].liste) == 0) {
-				
+
                     printf("liste supprimee. \n");
-                    tableau[choix_liste].liste = NULL;
+                    tableau[choix_liste].liste = NULL; //on repasse la liste à NULL afin de ne plus avoir la possibilité d'utiliser les fonctions sur cette liste
             }
 
             else printf("suppression impossible. \n");
         break;
-		
+
         case 7: //fusionnerListes
-		
+
             AffichageTableau(tableau,TAILLE_MAX);
             do{
 				printf("Votre choix pour la liste 1 ? \n ");
 				scanf("%d",&choix_liste);
 			}while(choix_liste<0 || choix_liste>9);
+
             int choix_liste2 = 0,choix_fusion = 0;
             do{
 				printf("Votre choix pour la liste 2 ? \n ");
 				scanf("%d",&choix_liste2);
 			}while(choix_liste2<0 || choix_liste2>9);
-			
+
 			do{
 				printf("Votre choix pour stocker la fusion ? (si vous selectionnez une liste deja existante, elle sera supprimee, choisir une liste différente de Liste 1 et liste 2) \n");
 				scanf("%d",&choix_fusion);
 			}while(choix_fusion<0 || choix_fusion>9 || choix_fusion == choix_liste || choix_fusion == choix_liste2);
+
             if(tableau[choix_fusion].liste != NULL) supprimerListe(tableau[choix_fusion].liste);
+
             tableau[choix_fusion].liste = fusionnerListes(tableau[choix_liste].liste,tableau[choix_liste2].liste);
-            tableau[choix_liste].liste = NULL;
+            tableau[choix_liste].liste = NULL; //on repasse la liste à NULL afin de ne plus avoir la possibilité d'utiliser les fonctions sur cette liste (liste supprimée dans la fonction fusion
             tableau[choix_liste2].liste = NULL;
+
             printf("Entrer nom de la liste fusion: \n");
             scanf("%s",tableau[choix_fusion].nom);
             strcpy(tableau[choix_liste].nom,"Liste inexistante");
@@ -136,7 +141,7 @@ int main()
 
 
         break;
-		
+
         case 8:
             printf("Vous aller quitter l'application \n");
         break;
@@ -147,10 +152,11 @@ int main()
         viderBuffer();
     }while (choix != 8);
     printf("Vous quittez l'application \n");
+
     int i = 0;
     for(i=0;i<TAILLE_MAX;i++)
     {
-        supprimerListe(tableau[i].liste);
+        supprimerListe(tableau[i].liste); // on supprime toutes les listes avant de quitter
     }
 
 
